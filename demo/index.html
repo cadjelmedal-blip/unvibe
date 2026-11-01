@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>unvibe — before / after</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/unvibe.css">
+<link rel="stylesheet" href="before.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h3l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5l4 4 4-4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.4l2.9 2.9 6.1-6.6"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 5-10 5L2 7z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></symbol>
+  </defs>
+</svg>
+
+<main class="page">
+  <header>
+    <h1>unvibe</h1>
+    <p>The same screens, twice. Left: what AI tools ship by default. Right: the micro-details that make it look designed. Every value on the right is in <code>assets/css/unvibe.css</code>.</p>
+  </header>
+
+  <!-- 1 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="01-controls">
+    <h2>Buttons, fields and menus</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="stack">
+          <div class="row"><button class="b-btn">✨ Launch campaign</button><button class="b-btn2">Save draft</button><button class="b-btn2">Cancel</button></div>
+          <div class="grid2">
+            <label><div class="b-label">Daily budget</div><input class="b-input" type="number" value="120.00"></label>
+            <label><div class="b-label">Status</div><select><option>Active</option></select></label>
+          </div>
+          <label><div class="b-label">Search campaigns</div><input class="b-input" placeholder="Search..."></label>
+        </div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="stack">
+          <div class="row"><button class="uv-btn uv-btn--primary"><svg width="16" height="16"><use href="#i-spark"/></svg>Launch campaign</button><button class="uv-btn">Save draft</button><button class="uv-btn uv-btn--ghost">Cancel</button></div>
+          <div class="grid2">
+            <div><span class="uv-label">Daily budget</span><div class="uv-number-field" style="margin-top:6px"><input class="uv-field uv-num" type="number" value="120.00"><span class="uv-stepper"><button>−</button><button>+</button></span></div></div>
+            <div><span class="uv-label">Status</span>
+              <button class="uv-select-trigger uv-field" aria-expanded="true" style="margin-top:6px"><span>Active</span><svg width="16" height="16"><use href="#i-chev"/></svg></button>
+              <div class="uv-popover static-popover" style="min-width:0">
+                <div class="uv-option">Any status</div>
+                <div class="uv-option" aria-selected="true">Active</div>
+                <div class="uv-option" data-focused>Paused</div>
+                <div class="uv-option">Archived</div>
+              </div>
+            </div>
+          </div>
+          <div class="uv-search"><svg width="16" height="16"><use href="#i-search"/></svg><input class="uv-field" placeholder="Search campaigns"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="02-settings">
+    <h2>Settings</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="b-label">Audience settings</div>
+        <div style="margin-top:8px">
+          <label class="b-check"><input type="checkbox"> Dynamic creative</label>
+          <label class="b-check"><input type="checkbox" checked> Enable audience expansion</label>
+          <label class="b-check"><input type="checkbox"> Include partner network</label>
+          <label class="b-check"><input type="checkbox" disabled> Frequency cap</label>
+        </div>
+        <div class="b-callout warn" style="margin-top:12px">⚠️ Frequency cap is only available with the Reach objective.</div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="uv-settings">
+          <div class="uv-setting"><div class="uv-setting__text"><p class="uv-setting__title">Dynamic creative</p><p class="uv-setting__desc">Lets the platform mix your images, texts and titles.</p></div><div class="uv-setting__control"><span class="uv-switch"><span class="uv-switch__thumb"></span></span></div></div>
+          <div class="uv-switch-card is-on"><span class="uv-setting__text"><span class="uv-setting__title">Audience expansion</span><span class="uv-setting__desc">Reaches people beyond your targeting when it is likely to perform.</span></span><span class="uv-switch" aria-checked="true"><span class="uv-switch__thumb"></span></span></div>
+          <div class="uv-setting"><div class="uv-setting__text"><p class="uv-setting__title">Pacing</p><p class="uv-setting__desc">How fast the budget is spent.</p></div><div class="uv-setting__control"><div class="uv-seg uv-seg--compact"><button class="uv-seg__item" aria-pressed="true">Standard</button><button class="uv-seg__item">Accelerated</button></div></div></div>
+          <div class="uv-setting uv-setting--locked"><div class="uv-setting__text"><p class="uv-setting__title">Frequency cap</p><p class="uv-setting__desc">Only with the Reach objective.</p></div><div class="uv-setting__control"><span class="uv-switch"><span class="uv-switch__thumb"></span></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="03-kpis">
+    <h2>Key numbers</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="grid2">
+          <div class="b-card"><div class="b-label">💰 Total spend</div><div class="b-big">$22,342</div><div class="b-up">↑ 12.4% vs last period</div></div>
+          <div class="b-card"><div class="b-label">🛒 Purchases</div><div class="b-big">709</div><div class="b-up">↑ 8.1% vs last period</div></div>
+          <div class="b-card"><div class="b-label">🎯 Cost per purchase</div><div class="b-big">$31.51</div><div class="b-up">↑ 3.9% vs last period</div></div>
+          <div class="b-card"><div class="b-label">📈 ROAS</div><div class="b-big">2.84</div><div class="b-down">↓ 1.2% vs last period</div></div>
+        </div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <dl class="uv-kpis" style="grid-template-columns:1fr 1fr">
+          <div class="uv-kpi"><span class="uv-kpi__icon"><svg width="16" height="16"><use href="#i-wallet"/></svg></span><dt class="uv-kpi__label">Spend</dt><dd class="uv-kpi__value">$22,342 <span class="uv-delta uv-delta--good">+12.4%</span></dd></div>
+          <div class="uv-kpi"><span class="uv-kpi__icon"><svg width="16" height="16"><use href="#i-cart"/></svg></span><dt class="uv-kpi__label">Purchases</dt><dd class="uv-kpi__value">709 <span class="uv-delta uv-delta--good">+8.1%</span></dd></div>
+          <div class="uv-kpi"><span class="uv-kpi__icon"><svg width="16" height="16"><use href="#i-target"/></svg></span><dt class="uv-kpi__label">Cost per purchase</dt><dd class="uv-kpi__value">$31.51 <span class="uv-delta uv-delta--bad">+3.9%</span></dd></div>
+          <div class="uv-kpi"><span class="uv-kpi__icon"><svg width="16" height="16"><use href="#i-trend"/></svg></span><dt class="uv-kpi__label">ROAS</dt><dd class="uv-kpi__value">2.84 <span class="uv-delta uv-delta--bad">−1.2%</span></dd></div>
+        </dl>
+        <p class="uv-kpi__sub" style="margin-top:10px">A cost that goes up is red, even when the number grows.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="04-table">
+    <h2>Tables</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <table>
+          <thead><tr><th>Campaign</th><th>Status</th><th>Spend</th><th>ROAS</th></tr></thead>
+          <tbody>
+            <tr><td><a href="#">Spring Sale — Prospecting</a></td><td><span class="b-badge ok">✓ Active</span></td><td>$8,120</td><td>3.12</td></tr>
+            <tr><td><a href="#">Retargeting — 30 days</a></td><td><span class="b-badge warn">Learning</span></td><td>$4,906</td><td>4.40</td></tr>
+            <tr><td><a href="#">UGC Testimonials</a></td><td><span class="b-badge bad">Paused</span></td><td>$1,284</td><td>0.92</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="uv-frame">
+          <table class="uv-table">
+            <thead><tr><th>Campaign</th><th>Status</th><th style="text-align:right">Spend</th><th style="text-align:right">ROAS</th></tr></thead>
+            <tbody>
+              <tr><td><div class="row" style="gap:10px;flex-wrap:nowrap"><span class="thumb"></span><div><div>Spring Sale — Prospecting</div><div class="uv-muted" style="font-size:13px">12 ads · Advantage+</div></div></div></td><td><span class="uv-status uv-status--ok">Active</span></td><td class="is-num">$8,120</td><td class="is-num">3.12</td></tr>
+              <tr class="is-selected"><td><div class="row" style="gap:10px;flex-wrap:nowrap"><span class="thumb b"></span><div><div>Retargeting — 30 days</div><div class="uv-muted" style="font-size:13px">6 ads · Manual</div></div></div></td><td><span class="uv-dot uv-dot--warn">Learning</span></td><td class="is-num">$4,906</td><td class="is-num">4.40</td></tr>
+              <tr><td><div class="row" style="gap:10px;flex-wrap:nowrap"><span class="thumb c"></span><div><div>UGC Testimonials</div><div class="uv-muted" style="font-size:13px">9 ads · Manual</div></div></div></td><td><span class="uv-dot uv-dot--idle">Paused</span></td><td class="is-num">$1,284</td><td class="is-num">0.92</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="05-ai">
+    <h2>An AI answer</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="b-stack">
+          <div class="b-card"><h4>📊 Summary</h4><div style="font-size:14px;line-height:1.5">Your account is performing well overall, with some opportunities for optimization!</div></div>
+          <div class="b-card" style="border-left:4px solid #22C55E"><h4>✅ What's working</h4><div style="font-size:14px;line-height:1.7">✔️ Retargeting has strong ROAS<br>✔️ UGC hooks drive clicks</div></div>
+          <div class="b-card" style="border-left:4px solid #F59E0B"><h4>⚠️ What to fix</h4><div style="font-size:14px;line-height:1.7">• 8 ads spend without purchases</div></div>
+          <div class="b-card"><h4>🚀 Next steps</h4><div style="font-size:14px;line-height:1.7">1. Pause underperformers<br>2. Scale winners</div></div>
+        </div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="uv-agent__thread" style="min-height:0">
+          <div class="uv-agent__scroll" style="-webkit-mask-image:none;mask-image:none">
+            <p class="uv-bubble">Which ads should I cut this week?</p>
+            <div class="uv-trace">
+              <p style="margin:0;display:flex;align-items:center;gap:8px"><svg width="16" height="16" style="color:var(--uv-ink-3)"><use href="#i-search"/></svg>Read 3 sources</p>
+              <ul>
+                <li><span>Performance, last 30 days</span><span class="uv-trace__meta">337 ads</span></li>
+                <li><span>Creatives</span><span class="uv-trace__thumbs"><span class="mini thumb" style="width:20px;height:20px"></span><span class="mini thumb b" style="width:20px;height:20px;margin-left:-6px"></span><span class="mini thumb c" style="width:20px;height:20px;margin-left:-6px"></span></span><span class="uv-trace__meta">24 visuals</span></li>
+                <li><span>Comments</span><span class="uv-trace__meta">133</span></li>
+              </ul>
+            </div>
+            <div class="uv-answer">
+              <p class="uv-answer__lead">Cut 8 ads that spent $1,412 without a purchase. Keep the testimonial hooks: they bring 41% of purchases.</p>
+              <h3>Cut</h3>
+              <ul><li>Six static images from “Spring Sale”, all above $150 spent, zero purchase.</li><li>Two videos whose hook rate is under 18%.</li></ul>
+              <h3>Scale</h3>
+              <ol><li><strong>Testimonial, kitchen</strong><blockquote>“I stopped buying the other brand.”</blockquote></li></ol>
+            </div>
+            <div class="uv-answer__actions"><button class="uv-icon-btn" aria-label="Copy"><svg width="16" height="16"><use href="#i-copy"/></svg></button><button class="uv-icon-btn" aria-label="Retry"><svg width="16" height="16"><use href="#i-redo"/></svg></button></div>
+          </div>
+          <div class="uv-composer">
+            <div class="uv-composer__status"><span class="uv-thinking__dots" aria-hidden><i></i><i></i><i></i></span>Reading the last 30 days</div>
+            <div class="uv-composer__box"><textarea placeholder="Ask about your account…"></textarea><div class="uv-composer__foot"><span class="uv-label" style="padding-left:8px">Last 30 days</span><button class="uv-send" aria-label="Send"><svg width="16" height="16"><use href="#i-send"/></svg></button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="06-feed">
+    <h2>Activity</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <table>
+          <thead><tr><th>User</th><th>Action</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>maya@acme.co</td><td>Launch (21 ads)</td><td>2026-10-31 14:32</td><td><span class="b-badge ok">Completed</span></td></tr>
+            <tr><td>sam@acme.co</td><td>Bulk edit (48 ads)</td><td>2026-10-31 11:05</td><td><span class="b-badge warn">Pending</span></td></tr>
+            <tr><td>maya@acme.co</td><td>Launch (6 ads)</td><td>2026-10-30 18:20</td><td><span class="b-badge bad">Failed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="uv-tabs" role="tablist"><button role="tab" aria-selected="true">All <span class="uv-count">12</span></button><button role="tab">Launches <span class="uv-count">9</span></button><button role="tab">Edits <span class="uv-count">3</span></button></div>
+        <div class="uv-feed-day"><h3>today</h3><ol>
+          <li class="uv-feed-item"><span class="uv-avatar">MC<span class="uv-avatar__badge"><span style="width:10px;height:10px;border-radius:99px;background:#1877F2"></span></span></span><div class="uv-feed-item__body"><p class="uv-feed-item__title">Launched 21 ads on Acme Running US</p><p class="uv-feed-item__meta">Maya Chen · 3 ad sets</p></div><div class="uv-feed-item__side"><time>14:32</time><span class="uv-dot uv-dot--ok">Done</span></div></li>
+          <li class="uv-feed-item"><span class="uv-avatar">SK<span class="uv-avatar__badge"><span style="width:10px;height:10px;border-radius:99px;background:#111"></span></span></span><div class="uv-feed-item__body"><p class="uv-feed-item__title">Edited 48 ads: new landing page</p><p class="uv-feed-item__meta">Sam Kim · Acme Running UK</p></div><div class="uv-feed-item__side"><time>11:05</time><span class="uv-dot uv-dot--idle">In progress</span></div></li>
+        </ol></div>
+        <div class="uv-feed-day"><h3>yesterday</h3><ol>
+          <li class="uv-feed-item"><span class="uv-avatar is-unknown">?<span class="uv-avatar__badge"><span style="width:10px;height:10px;border-radius:99px;background:#0A66C2"></span></span></span><div class="uv-feed-item__body"><p class="uv-feed-item__title">Launched 6 ads on Acme B2B</p><p class="uv-feed-item__meta"><em>Author not recorded</em></p></div><div class="uv-feed-item__side"><time>18:20</time><span class="uv-dot uv-dot--bad">Stopped</span></div></li>
+        </ol></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="07-callouts">
+    <h2>Callouts, badges and tags</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="stack">
+          <div class="b-callout">💡 <b>Insight:</b> Your top 3 ads drive 62% of revenue. Consider reallocating budget!</div>
+          <div class="row"><span class="b-badge ok">✓ Set</span><span class="b-badge warn">⚠ To set</span><span class="b-badge" style="background:#EDE9FE;color:#5B21B6">New!</span></div>
+          <div><div class="b-label">Attribution window</div><label class="b-check"><input type="checkbox" checked> 1-day click</label><label class="b-check"><input type="checkbox" checked> 7-day click</label><label class="b-check"><input type="checkbox"> 1-day view</label></div>
+        </div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="stack">
+          <div class="uv-callout"><p class="uv-callout__sign"><svg width="14" height="14"><use href="#i-spark"/></svg>Insight · report</p>Your top 3 ads drive 62% of revenue, from 18% of spend.</div>
+          <div class="row"><span class="uv-badge uv-badge--ok">Set</span><span class="uv-badge uv-badge--warn">To set</span><span class="uv-badge">Existing</span><span class="uv-badge uv-badge--beta">Beta</span></div>
+          <div><span class="uv-label">Attribution window</span><div class="row" style="margin-top:8px"><span class="uv-tag is-on">1-day click</span><span class="uv-tag is-on">7-day click</span><span class="uv-tag">1-day view</span></div></div>
+          <div class="row"><span class="uv-value">Testimonial <span class="uv-value__count">12</span><button class="uv-value__remove" style="opacity:1" aria-label="Remove">×</button></span><span class="uv-value">Unboxing <span class="uv-value__count">7</span><button class="uv-value__remove" aria-label="Remove">×</button></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="08-progress">
+    <h2>Progress and loading</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="stack">
+          <div><span class="b-spinner"></span> Loading...</div>
+          <ul class="b-steps" style="margin:0;padding-left:18px"><li>✅ Analyzing your data</li><li>✅ Generating insights</li><li>⏳ Finalizing results...</li></ul>
+          <div class="b-card" style="text-align:center"><div class="b-big" style="font-size:28px">75%</div><div class="b-label" style="margin-top:6px">Processing</div></div>
+        </div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="grid2" style="align-items:start">
+          <ol class="uv-steps">
+            <li><a class="uv-step is-done" href="#"><span class="uv-step__mark"><svg width="11" height="11"><use href="#i-check"/></svg></span>Connect an account</a></li>
+            <li><a class="uv-step is-done" href="#"><span class="uv-step__mark"><svg width="11" height="11"><use href="#i-check"/></svg></span>Pick a plan</a></li>
+            <li><a class="uv-step is-current" href="#"><span class="uv-step__mark"></span>Invite your team</a></li>
+            <li><a class="uv-step" href="#"><span class="uv-step__mark"></span>First launch</a></li>
+          </ol>
+          <div class="stack">
+            <span class="uv-thinking"><span class="uv-thinking__dots"><i></i><i></i><i></i></span><span class="uv-shimmer">Reading your account</span><span class="uv-thinking__time">12s</span></span>
+            <span class="uv-skeleton" style="height:14px;width:90%"></span>
+            <span class="uv-skeleton" style="height:14px;width:70%"></span>
+            <span class="uv-skeleton" style="height:14px;width:80%"></span>
+          </div>
+        </div>
+        <div class="dark-stage" style="margin-top:14px">
+          <h3>Launching 24 ads</h3><p>Paused, you activate them when you want.</p>
+          <ol class="uv-journal">
+            <li class="uv-journal__line is-done"><span class="uv-journal__mark"><svg width="12" height="12" style="color:#A3CDBC"><use href="#i-check"/></svg></span>Settings checked</li>
+            <li class="uv-journal__line is-done"><span class="uv-journal__mark"><svg width="12" height="12" style="color:#A3CDBC"><use href="#i-check"/></svg></span>24 creatives uploaded</li>
+            <li class="uv-journal__line is-current"><span class="uv-journal__mark"></span><span><span class="uv-journal__text">Creating the ads, 14 of 24</span><span class="uv-journal__wait">The platform asked us to slow down: resuming in 2 min.</span></span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 ───────────────────────────────────────────────────────────── -->
+  <section class="shot" data-shot="09-dates">
+    <h2>A date range</h2>
+    <div class="pair">
+      <div class="panel before" data-tag="Before">
+        <div class="grid2"><label><div class="b-label">Start date</div><input class="b-input" type="date" value="2026-10-02"></label><label><div class="b-label">End date</div><input class="b-input" type="date" value="2026-10-31"></label></div>
+        <div style="margin-top:12px"><button class="b-btn">Apply</button></div>
+      </div>
+      <div class="panel after" data-tag="After">
+        <div class="uv-range" style="width:100%;grid-template-columns:150px minmax(0,1fr)">
+          <ul class="uv-range__presets">
+            <li><button>Yesterday</button></li><li><button>Last 7 days</button></li><li><button>Last 14 days</button></li>
+            <li><button aria-checked="true">Last 30 days<small>Oct 2 – Oct 31</small></button></li>
+            <li><button>This month</button></li><li><button>Last month</button></li><li><button>Last 90 days</button></li>
+          </ul>
+          <div style="display:flex;flex-direction:column;min-width:0">
+            <div class="uv-range__months" id="months"></div>
+            <div class="uv-range__foot"><span class="uv-num">Oct 2 – Oct 31, 2026 · 30 days</span><span style="margin-left:auto;display:flex;gap:8px"><button class="uv-btn uv-btn--ghost">Cancel</button><button class="uv-btn">Apply</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Two static months for the date-range shot (Oct and Nov 2026, range Oct 2 → Oct 31, data until Nov 1).
+  const box = document.getElementById("months");
+  const names = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+  for (const [y, m, title] of [[2026, 9, "October 2026"], [2026, 10, "November 2026"]]) {
+    const first = new Date(y, m, 1), days = new Date(y, m + 1, 0).getDate(), lead = (first.getDay() + 6) % 7;
+    let html = `<div class="uv-range__month"><h4>${title}</h4><table><thead><tr>${names.map(n => `<th>${n}</th>`).join("")}</tr></thead><tbody><tr>`;
+    for (let i = 0; i < lead; i++) html += "<td></td>";
+    for (let d = 1; d <= days; d++) {
+      const pos = (lead + d - 1) % 7;
+      const inOct = m === 9, cls = ["uv-day"];
+      if (inOct && d === 2) cls.push("is-start");
+      else if (inOct && d === 31) cls.push("is-end");
+      else if (inOct && d > 2 && d < 31) cls.push("is-in-range");
+      if (m === 10 && d > 1) cls.push("is-disabled");
+      html += `<td><span class="${cls.join(" ")}">${d}</span></td>`;
+      if (pos === 6 && d < days) html += "</tr><tr>";
+    }
+    box.insertAdjacentHTML("beforeend", html + "</tr></tbody></table></div>");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* The "before": what AI tools ship by default. Kept realistic, not a strawman — every rule below is a
+   tell we actually removed from a production app (uppercase tracked labels, bordered cards everywhere,
+   huge numbers, colored left bars, emoji headings, indigo gradients, native controls). */
+.before input { accent-color: auto; }   /* the OS blue, as shipped */
+.before { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #111827; }
+.before .b-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6B7280; }
+.before .b-card { padding: 16px; border: 1px solid #E5E7EB; border-radius: 8px; background: #fff; box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1); }
+.before .b-big { margin-top: 6px; font-size: 36px; font-weight: 800; line-height: 1; color: #111827; }
+.before .b-up { margin-top: 6px; font-size: 13px; font-weight: 600; color: #16A34A; }
+.before .b-down { margin-top: 6px; font-size: 13px; font-weight: 600; color: #DC2626; }
+.before .b-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border: 0; border-radius: 8px; background: linear-gradient(135deg, #6366F1, #8B5CF6); color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 10px 15px -3px rgb(99 102 241 / .35); }
+.before .b-btn2 { padding: 8px 14px; border: 1px solid #D1D5DB; border-radius: 8px; background: #fff; color: #374151; font-size: 14px; font-weight: 500; }
+.before .b-input, .before select { width: 100%; padding: 8px 10px; border: 1px solid #D1D5DB; border-radius: 6px; background: #fff; font-size: 14px; color: #111827; }
+.before .b-input:focus { outline: 2px solid #6366F1; }
+.before .b-callout { padding: 12px 14px; border-left: 4px solid #6366F1; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-size: 14px; }
+.before .b-callout.warn { border-left-color: #F59E0B; background: #FFFBEB; color: #92400E; }
+.before .b-badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.before .b-badge.ok { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+.before .b-badge.warn { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+.before .b-badge.bad { background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; }
+.before table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.before thead th { padding: 10px 12px; background: #F3F4F6; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6B7280; text-align: left; }
+.before tbody td { padding: 12px; border-bottom: 1px solid #E5E7EB; }
+.before tbody tr:nth-child(even) { background: #F9FAFB; }
+.before a { color: #4F46E5; }
+.before .b-check { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 14px; }
+.before h4 { margin: 0 0 8px; font-size: 15px; font-weight: 700; }
+.before .b-stack > * + * { margin-top: 12px; }
+.before .b-steps li { padding: 4px 0; font-size: 14px; }
+.before .b-spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #C7D2FE; border-top-color: #6366F1; border-radius: 999px; animation: b-spin .8s linear infinite; vertical-align: -3px; }
+@keyframes b-spin { to { transform: rotate(360deg); } }

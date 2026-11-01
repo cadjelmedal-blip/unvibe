@@ -1,0 +1,31 @@
+{
+  "name": "unvibe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Make AI-built interfaces look designed: a Claude Code skill, a CSS file and React components with ~150 measured micro-details.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "shots": "node scripts/capture.mjs shots demo/index.html screenshots"
+  },
+  "peerDependencies": {
+    "@internationalized/date": ">=3.5",
+    "react": ">=18",
+    "react-aria-components": ">=1.5"
+  },
+  "devDependencies": {
+    "@internationalized/date": "3.12.4",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "jsdom": "^30.0.1",
+    "react": "^19.2.3",
+    "react-aria": "3.53.1",
+    "react-aria-components": "1.22.1",
+    "react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}

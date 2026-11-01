@@ -1,0 +1,568 @@
+/*
+ * unvibe.css — the micro-details that make an interface look designed instead of generated.
+ *
+ * Every value here was measured on a professional component library (BoardUI) or tuned on a real
+ * product, then shipped. Map the tokens below to your brand; keep the numbers.
+ *
+ *   1. Tokens            2. Motion            3. Type & labels      4. Buttons
+ *   5. Fields            6. Menus & selects   7. Segmented          8. Switches
+ *   9. Settings rows    10. Radio cards      11. Tags & badges     12. KPI tiles
+ *  13. Tables & grids   14. Trees            15. Callouts & lists  16. Accordion
+ *  17. Toasts & tips    18. Palette, dialog  19. Loading           20. Activity feed
+ *  21. Agent thread     22. Steps & journal  23. Date range        24. Reduced motion
+ *
+ * Plain CSS: works with Tailwind 3, Tailwind 4 (unlayered rules beat @layer utilities) or no framework.
+ */
+
+/* ── 1. Tokens ─────────────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Surfaces. A warm off-white page, white for what floats, a darker "sunken" fill for fields and tiles. */
+  --uv-canvas: #F6F4EE;
+  --uv-surface: #FFFFFF;
+  --uv-sunken: #EFEDE6;        /* fields, KPI tiles, segmented tracks on the page (their #F7F7F7 on white) */
+  --uv-sunken-hover: #EAE7DF;
+  --uv-sunken-soft: #F7F5F0;   /* table header bands, filled lists inside white surfaces */
+  --uv-track: #ECE9E1;
+  --uv-chip: #E4E1D8;          /* counts, small neutral badges, agent action buttons */
+  --uv-chip-hover: #DAD6CB;
+  --uv-hover: #F2F0EA;         /* menu item hover: never the same color as "selected" */
+  --uv-row-hover: #FAF8F3;
+  --uv-disabled: #F4F2EC;
+
+  /* Lines. */
+  --uv-rule: #E4E0D6;
+  --uv-rule-2: #DAD6CA;
+  --uv-rule-3: #C9C7C1;
+  --uv-branch: #D9D5CA;        /* tree connectors, quote bars */
+
+  /* Ink: three levels, all readable (ink-3 stays above 4.5:1 on the canvas). */
+  --uv-ink: #203A33;
+  --uv-ink-2: #46524E;
+  --uv-ink-3: #5E6864;
+
+  /* Selection: what is chosen or current (menus, rows, tabs, focus rings). Not the primary action color. */
+  --uv-sel: #2E6B5A;
+  --uv-sel-tint: #E9F0D4;
+  --uv-sel-line: #A3CDBC;
+  --uv-sel-row: #F3F7E6;
+  --uv-sel-row-hover: #EDF3DB;
+
+  /* Primary action: ONE per screen. */
+  --uv-accent: #D9E86B;
+  --uv-accent-top: #E5F190;
+  --uv-accent-bottom: #D3E35E;
+  --uv-accent-hover-top: #ECF5A6;
+  --uv-accent-hover-bottom: #DCEA70;
+  --uv-accent-active-top: #D0E05A;
+  --uv-accent-active-bottom: #C6D84E;
+  --uv-accent-line: #B5CB42;
+  --uv-on-accent: #203A33;
+
+  /* Meaning. */
+  --uv-good: #2E6B5A;
+  --uv-danger: #C8452F;
+  --uv-danger-tint: #FBE9E5;
+  --uv-warn: #8A6411;
+  --uv-warn-tint: #FBF3D9;
+  --uv-info: #2447C9;
+  --uv-info-tint: #E8EDF9;
+
+  /* Shadows are tinted with the ink, never pure black. */
+  --uv-shadow-rgb: 32 58 51;
+  --uv-shadow-1: 0 1px 2px rgb(var(--uv-shadow-rgb) / .06);
+  --uv-shadow-raised: 0 1px 2px rgb(var(--uv-shadow-rgb) / .12), 0 0 0 .5px rgb(var(--uv-shadow-rgb) / .06);
+  --uv-shadow-popover: 0 1px 2px rgb(var(--uv-shadow-rgb) / .06), 0 16px 40px rgb(19 45 51 / .16);
+  --uv-shadow-modal: 0 24px 60px rgb(var(--uv-shadow-rgb) / .18), 0 2px 8px rgb(var(--uv-shadow-rgb) / .07);
+
+  /* Radii: the bigger the thing, the rounder. */
+  --uv-r-badge: 6px;
+  --uv-r-item: 8px;
+  --uv-r-control: 10px;
+  --uv-r-card: 12px;
+  --uv-r-block: 14px;
+  --uv-r-tile: 16px;
+  --uv-r-canvas: 24px;
+
+  /* Type. */
+  --uv-font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --uv-font-display: "Inter Tight", var(--uv-font);
+
+  /* ── 2. Motion ── one curve, four durations, a spring for what travels. */
+  --uv-ease: cubic-bezier(.22, 1, .36, 1);
+  --uv-ease-in: cubic-bezier(.16, 1, .3, 1);
+  --uv-ease-out: cubic-bezier(.7, 0, .84, 0);
+  --uv-spring: linear(0, 0.0258, 0.09, 0.1763, 0.2732, 0.3724, 0.4683, 0.5573, 0.6376, 0.7082, 0.7689, 0.8202, 0.8628, 0.8976, 0.9256, 0.9476, 0.9648, 0.9778, 0.9875, 0.9945, 0.9994, 1.0026, 1.0047, 1.0058, 1.0062, 1.0062, 1.0059, 1.0055, 1.0049, 1.0043, 1.0036, 1.0031, 1.0025, 1.002, 1.0016, 1.0013, 1);
+  --uv-d-instant: 120ms;
+  --uv-d-short: 160ms;
+  --uv-d-standard: 240ms;
+  --uv-d-spring: 520ms;
+}
+
+/* Native leftovers (consent checkboxes, sliders) take the brand, not the OS blue. */
+input[type=checkbox], input[type=radio], input[type=range], progress { accent-color: var(--uv-sel); }
+
+/* ── 3. Type & labels ── no letter-spaced capitals; one display title. ───────────────────────────── */
+.uv-page-title { margin: 0; font: 800 34px/1.05 var(--uv-font-display); letter-spacing: -.04em; color: var(--uv-ink); }
+.uv-section-title { margin: 0; font: 700 22px/28px var(--uv-font-display); letter-spacing: -.02em; color: var(--uv-ink); }
+.uv-label { display: block; font: 500 12.5px/18px var(--uv-font); letter-spacing: 0; text-transform: none; color: var(--uv-ink-3); }
+.uv-label::first-letter { text-transform: uppercase; }
+.uv-eyebrow { font: 500 13px/18px var(--uv-font); letter-spacing: 0; color: var(--uv-ink-3); }
+.uv-muted { color: var(--uv-ink-3); }
+.uv-num { font-variant-numeric: tabular-nums; }
+
+/* ── 4. Buttons ── relief, hover then press one notch darker, crisp focus ring. ─────────────────── */
+.uv-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 36px; padding: 8px 14px; border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-control);
+  background: var(--uv-surface); color: var(--uv-ink); font: 500 14px/18px var(--uv-font); cursor: pointer;
+  box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .08), inset 0 -1px 0 rgb(var(--uv-shadow-rgb) / .04);
+  transition: background-color 150ms var(--uv-ease), border-color 150ms var(--uv-ease), box-shadow 150ms var(--uv-ease), color 150ms var(--uv-ease), scale var(--uv-d-instant) var(--uv-ease);
+}
+.uv-btn svg { flex: none; }
+.uv-btn:hover:not(:disabled) { background: #FAF8F3; border-color: var(--uv-rule-3); }
+.uv-btn:active:not(:disabled) { background: #F1EEE6; scale: .985; }
+.uv-btn:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+.uv-btn:disabled { background: var(--uv-disabled); color: var(--uv-ink-3); box-shadow: none; cursor: not-allowed; }
+.uv-btn[aria-pressed="true"] { background: var(--uv-sel-tint); border-color: var(--uv-sel-line); }
+.uv-btn--primary {
+  border-color: var(--uv-accent-line); color: var(--uv-on-accent); font-weight: 600;
+  background-image: linear-gradient(180deg, var(--uv-accent-top) 0%, var(--uv-accent-bottom) 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .65), 0 1px 2px rgb(var(--uv-shadow-rgb) / .18), 0 3px 8px -3px rgb(var(--uv-shadow-rgb) / .25);
+}
+.uv-btn--primary:hover:not(:disabled) { background-image: linear-gradient(180deg, var(--uv-accent-hover-top) 0%, var(--uv-accent-hover-bottom) 100%); border-color: var(--uv-accent-line); }
+.uv-btn--primary:active:not(:disabled) { background-image: linear-gradient(180deg, var(--uv-accent-active-top) 0%, var(--uv-accent-active-bottom) 100%); box-shadow: inset 0 1px 2px rgb(var(--uv-shadow-rgb) / .25); }
+.uv-btn--primary:disabled { background-image: none; background: var(--uv-accent); opacity: .55; }
+.uv-btn--ghost { border-color: transparent; background: transparent; box-shadow: none; color: var(--uv-ink-2); }
+.uv-btn--ghost:hover:not(:disabled) { background: rgb(var(--uv-shadow-rgb) / .05); border-color: transparent; color: var(--uv-ink); }
+.uv-btn--danger { color: var(--uv-danger); border-color: color-mix(in srgb, var(--uv-danger) 40%, var(--uv-rule-2)); }
+.uv-btn--danger:hover:not(:disabled) { background: var(--uv-danger-tint); }
+/* Square icon actions under an AI answer: 28px, 8px radius, on a chip fill. */
+.uv-icon-btn { display: grid; place-items: center; width: 28px; height: 28px; padding: 6px; border: 0; border-radius: var(--uv-r-item); background: var(--uv-chip); color: var(--uv-ink-2); cursor: pointer; transition: background-color 120ms, color 120ms; }
+.uv-icon-btn:hover { background: var(--uv-chip-hover); color: var(--uv-ink); }
+.uv-icon-btn:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+
+/* ── 5. Fields ── filled, borderless at rest, darker on hover, white + ring on focus. 36px tall. ── */
+.uv-field {
+  display: block; width: 100%; min-height: 36px; padding: 7px 12px; border: 1px solid transparent; border-radius: var(--uv-r-control);
+  background: var(--uv-sunken); color: var(--uv-ink); font: 400 14px/20px var(--uv-font); outline: none;
+  transition: background-color 150ms var(--uv-ease), border-color 150ms var(--uv-ease), box-shadow 150ms var(--uv-ease);
+}
+.uv-field::placeholder { color: var(--uv-ink-3); }
+.uv-field:hover:not(:disabled):not(:focus) { background: var(--uv-sunken-hover); }
+.uv-field:focus, .uv-field:focus-within, .uv-field[aria-expanded="true"] { border-color: var(--uv-sel); background: var(--uv-surface); box-shadow: 0 0 0 3px var(--uv-sel-tint); }
+.uv-field:disabled, .uv-field[aria-disabled="true"] { background: var(--uv-disabled); color: var(--uv-ink-3); cursor: not-allowed; }
+textarea.uv-field { min-height: 80px; resize: vertical; }
+/* Inside a white modal, fields go one step lighter so they do not look like holes. */
+.uv-on-surface .uv-field { background: var(--uv-sunken-soft); }
+/* Search: same field, the icon inside, 46px when it heads a table. */
+.uv-search { position: relative; }
+.uv-search > svg { position: absolute; left: 14px; top: 50%; translate: 0 -50%; color: var(--uv-ink-3); pointer-events: none; }
+.uv-search > .uv-field { padding-left: 40px; }
+.uv-search--lg > .uv-field { height: 46px; }
+/* Number: − and + live inside the field; the browser spinners are hidden. */
+.uv-number-field { position: relative; }
+.uv-number-field input { padding-right: 68px; }
+.uv-number-field input::-webkit-outer-spin-button, .uv-number-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.uv-number-field input[type=number] { -moz-appearance: textfield; }
+.uv-stepper { position: absolute; top: 4px; right: 4px; bottom: 4px; display: flex; gap: 2px; }
+.uv-stepper button { display: grid; place-items: center; width: 28px; border: 0; border-radius: 7px; background: transparent; color: var(--uv-ink-2); cursor: pointer; transition: background-color 120ms, color 120ms; }
+.uv-stepper button:hover:not(:disabled) { background: var(--uv-surface); color: var(--uv-ink); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .12); }
+.uv-stepper button:disabled { opacity: .35; cursor: default; }
+/* A locked field says why, in gray, with no warning icon. Required stars are gray too. */
+.uv-hint { margin: 6px 0 0; font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-required { color: var(--uv-ink-3); }
+
+/* ── 6. Menus & selects ── hover is cream, the current choice is pale selection + a check. ──────── */
+.uv-select-trigger { display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left; cursor: pointer; }
+.uv-select-trigger .uv-prefix { margin-right: 4px; color: var(--uv-ink-3); }
+.uv-select-trigger > svg:last-child { flex: none; color: var(--uv-ink-3); transition: rotate 200ms var(--uv-ease); }
+.uv-select-trigger[aria-expanded="true"] > svg:last-child { rotate: 180deg; }
+/* A toolbar trigger (white, bordered) is the other appearance of the same menu. */
+.uv-select-trigger--toolbar { min-height: 36px; padding: 0 12px; border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-control); background: var(--uv-surface); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .07); font: 500 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-popover {
+  min-width: max(var(--trigger-width, 0px), 220px); max-height: min(560px, 70vh); overflow: auto; padding: 8px;
+  border: 1px solid var(--uv-rule); border-radius: var(--uv-r-block); background: var(--uv-surface); box-shadow: var(--uv-shadow-popover);
+  transform-origin: top center; animation: uv-menu-in var(--uv-d-standard) var(--uv-ease-in);
+}
+.uv-popover.is-end { transform-origin: top right; }   /* flipped when it would overflow the viewport */
+.uv-popover-section { margin: 10px 10px 4px; font: 500 12px/16px var(--uv-font); color: var(--uv-ink-3); }
+.uv-popover hr { margin: 6px; border: 0; border-top: 1px solid var(--uv-rule); }
+.uv-option { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: var(--uv-r-control); font: 400 14px/20px var(--uv-font); color: var(--uv-ink); cursor: pointer; outline: none; transition: background-color 120ms var(--uv-ease), color 120ms var(--uv-ease); }
+.uv-option:hover, .uv-option[data-focused] { background: var(--uv-hover); }
+.uv-option[aria-selected="true"], .uv-option[aria-checked="true"] { background: var(--uv-sel-tint); font-weight: 500; }
+.uv-option[aria-selected="true"]::after, .uv-option[aria-checked="true"]::after {
+  content: ""; flex: none; width: 16px; height: 16px; margin-left: auto;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%232E6B5A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.4l2.9 2.9 6.1-6.6'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+.uv-option[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+/* A menu on a dark stage (a media viewer) keeps the dark: no light pill in the middle of it. */
+.uv-on-dark .uv-select-trigger { height: 32px; padding: 0 10px; border: 1px solid #47613E; border-radius: var(--uv-r-item); background: #233C30; color: #E9F2DE; font-size: 12.5px; }
+.uv-on-dark .uv-select-trigger:hover, .uv-on-dark .uv-select-trigger[aria-expanded="true"] { border-color: #6B8A60; background: #2A4639; }
+.uv-on-dark .uv-select-trigger > svg { color: #B8CDB0; }
+
+/* ── 7. Segmented ── a white pill that glides on a gray track. ───────────────────────────────────── */
+.uv-seg { position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 11px; background: var(--uv-track); }
+.uv-seg__item { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px; border: 0; border-radius: var(--uv-r-item); background: transparent; font: 500 12.5px/1 var(--uv-font); color: var(--uv-ink-2); cursor: pointer; text-decoration: none; transition: color var(--uv-d-short) var(--uv-ease); }
+.uv-seg__item:hover { color: var(--uv-ink); }
+.uv-seg__item[aria-pressed="true"], .uv-seg__item[aria-selected="true"], .uv-seg__item[aria-current="page"] { color: var(--uv-ink); font-weight: 600; }
+.uv-seg:not([data-glide]) .uv-seg__item:is([aria-pressed="true"],[aria-selected="true"],[aria-current="page"]) { background: var(--uv-surface); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .14); }
+.uv-seg__item:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 1px; }
+/* The glide: one absolutely positioned pill moved with CSS vars (see Segmented.tsx). */
+.uv-seg__glide { position: absolute; top: 0; left: 0; z-index: 0; width: var(--g-w, 0); height: var(--g-h, 0); transform: translate3d(var(--g-x, 0), var(--g-y, 0), 0); border-radius: var(--uv-r-item); background: var(--uv-surface); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .14), 0 0 0 .5px rgb(var(--uv-shadow-rgb) / .06); opacity: 0; pointer-events: none; }
+.uv-seg[data-glide] .uv-seg__glide { opacity: 1; }
+.uv-seg[data-settled] .uv-seg__glide { transition: transform var(--uv-d-spring) var(--uv-spring), width var(--uv-d-spring) var(--uv-spring), height var(--uv-d-spring) var(--uv-spring), opacity var(--uv-d-short) var(--uv-ease); }
+/* Compact variant for a settings row. */
+.uv-seg--compact { border-radius: var(--uv-r-control); background: var(--uv-sunken); }
+.uv-seg--compact .uv-seg__item { height: 28px; padding: 5px 12px; font-size: 13px; }
+
+/* ── 8. Switches ── every yes/no setting is a switch, never a checkbox. ──────────────────────────── */
+.uv-switch { position: relative; display: inline-flex; flex: none; width: 36px; height: 20px; padding: 2px; border-radius: 999px; background: #E4E1D8; cursor: pointer; transition: background-color 160ms var(--uv-ease); }
+.uv-switch:hover { background: #DBD7CC; }
+.uv-switch[aria-checked="true"], .uv-switch[data-selected] { background: linear-gradient(180deg, #367A66, var(--uv-sel)); }
+.uv-switch__thumb { width: 16px; height: 16px; border-radius: 999px; background: linear-gradient(180deg, #FFFFFF, #EEEBE3); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .25); transition: translate 200ms var(--uv-spring); }
+.uv-switch[aria-checked="true"] .uv-switch__thumb, .uv-switch[data-selected] .uv-switch__thumb { translate: 16px 0; background: linear-gradient(180deg, #FFFFFF, #F4F2EC); }
+.uv-switch:focus-visible, .uv-switch[data-focus-visible] { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+.uv-switch--sm { width: 28px; height: 16px; }
+.uv-switch--sm .uv-switch__thumb { width: 12px; height: 12px; }
+.uv-switch--sm[aria-checked="true"] .uv-switch__thumb { translate: 12px 0; }
+/* One important setting on its own: the switch card (12px radius, 1px line, 12/20/12/16 padding). */
+.uv-switch-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px 12px 16px; border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-card); background: var(--uv-surface); cursor: pointer; transition: border-color 150ms, background-color 150ms; }
+.uv-switch-card:hover { border-color: var(--uv-rule-3); }
+.uv-switch-card.is-on { border-color: var(--uv-sel-line); background: #FBFCF7; }
+
+/* ── 9. Settings rows ── text left (title 14/20 500, description 13/18 gray), control right. ─────── */
+.uv-settings { display: flex; flex-direction: column; gap: 8px; }
+.uv-setting { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px 12px 16px; border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-card); background: var(--uv-surface); }
+.uv-setting__text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.uv-setting__title { display: flex; align-items: center; gap: 6px; margin: 0; font: 500 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-setting__title svg { color: var(--uv-ink-3); }
+.uv-setting__desc { margin: 0; font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-setting__control { flex: none; display: flex; align-items: center; }
+.uv-setting--stacked { flex-direction: column; align-items: stretch; gap: 10px; }
+.uv-setting--stacked .uv-setting__control { display: block; }
+.uv-setting--locked .uv-setting__title, .uv-setting--locked .uv-setting__control { opacity: .55; }
+
+/* ── 10. Radio cards ── options you can see, with the round indicator in the corner. ─────────────── */
+.uv-radio-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.uv-radio-card { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 8px 8px 12px; border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-card); background: var(--uv-surface); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .05); cursor: pointer; transition: border-color 150ms, background-color 150ms, box-shadow 150ms; }
+.uv-radio-card:hover { border-color: var(--uv-rule-3); background: #FCFBF8; }
+.uv-radio-card.is-selected, .uv-radio-card[data-selected] { border-color: var(--uv-sel); background: var(--uv-sel-tint); box-shadow: 0 0 0 1px var(--uv-sel); }
+.uv-radio-card:focus-within, .uv-radio-card[data-focus-visible] { box-shadow: 0 0 0 1px var(--uv-sel), 0 0 0 4px var(--uv-sel-tint); }
+.uv-radio-card__dot { position: absolute; top: 14px; right: 14px; width: 16px; height: 16px; border: 1.5px solid var(--uv-rule-3); border-radius: 50%; background: var(--uv-surface); transition: border-color 120ms, background 120ms, box-shadow 120ms; }
+.uv-radio-card:hover .uv-radio-card__dot { border-color: var(--uv-sel); }
+.uv-radio-card.is-selected .uv-radio-card__dot, .uv-radio-card[data-selected] .uv-radio-card__dot { border-color: var(--uv-sel); background: var(--uv-sel); box-shadow: inset 0 0 0 3.5px #fff; }
+.uv-radio-card__art { display: flex; align-items: flex-end; justify-content: center; gap: 6px; height: 78px; padding: 8px 0 6px; border-radius: var(--uv-r-item); background: var(--uv-sunken-soft); }
+.uv-radio-card.is-selected .uv-radio-card__art { background: rgb(255 255 255 / .55); }
+.uv-radio-card__title { padding: 0 4px; font: 500 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-radio-card__desc { padding: 0 4px; font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-radio-card input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+/* A native radio drawn like the library one: filled selection color with a white dot. */
+.uv-radio { appearance: none; -webkit-appearance: none; display: inline-grid; place-items: center; width: 16px; height: 16px; margin: 0; border: 1px solid var(--uv-rule-3); border-radius: 999px; background: #fff; box-shadow: var(--uv-shadow-1); cursor: pointer; transition: border-color 150ms var(--uv-ease), background-color 150ms var(--uv-ease); }
+.uv-radio::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: #fff; transform: scale(0); transition: transform 160ms var(--uv-ease); }
+.uv-radio:checked { border-color: var(--uv-sel); background: var(--uv-sel); box-shadow: inset 0 1px 0 rgb(255 255 255 / .18); }
+.uv-radio:checked::before { transform: scale(1); }
+.uv-radio:hover:not(:checked):not(:disabled) { border-color: var(--uv-sel); }
+.uv-radio:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+
+/* ── 11. Tags & badges ── soft pills; capitals only on tiny tags like BETA. ──────────────────────── */
+.uv-tag { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border: 1px solid var(--uv-rule-2); border-radius: 999px; background: var(--uv-surface); font: 500 13px/18px var(--uv-font); color: var(--uv-ink-2); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .05); cursor: pointer; transition: background-color 150ms, border-color 150ms, color 150ms; }
+.uv-tag:hover { border-color: var(--uv-rule-3); background: #FAF8F3; }
+.uv-tag.is-on, .uv-tag[aria-pressed="true"] { border-color: var(--uv-sel-line); background: var(--uv-sel-tint); color: var(--uv-sel); box-shadow: none; }
+.uv-tag:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+/* A value with its count and a remove button that shows on hover. */
+.uv-value { display: inline-flex; align-items: center; gap: 6px; padding: 5px 6px 5px 12px; border: 1px solid var(--uv-rule-2); border-radius: 999px; background: #fff; font: 500 13px/18px var(--uv-font); color: var(--uv-ink-2); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .05); }
+.uv-value__count { padding: 0 5px; border-radius: 999px; background: var(--uv-sunken); font-size: 11.5px; line-height: 16px; color: var(--uv-ink-3); }
+.uv-value__remove { display: grid; place-items: center; width: 18px; height: 18px; border: 0; border-radius: 999px; background: transparent; color: var(--uv-ink-3); opacity: 0; cursor: pointer; transition: opacity 120ms, background-color 120ms; }
+.uv-value:hover .uv-value__remove, .uv-value__remove:focus-visible { opacity: 1; }
+.uv-value__remove:hover { background: var(--uv-sunken); color: var(--uv-ink); }
+.uv-badge { display: inline-flex; align-items: center; padding: 1px 7px; border-radius: var(--uv-r-badge); background: var(--uv-chip); font: 500 11.5px/18px var(--uv-font); color: var(--uv-ink-2); white-space: nowrap; }
+.uv-badge--ok { background: var(--uv-sel-tint); color: var(--uv-sel); }
+.uv-badge--warn { background: var(--uv-warn-tint); color: var(--uv-warn); }
+.uv-badge--danger { background: var(--uv-danger-tint); color: var(--uv-danger); }
+.uv-badge--beta { padding: 2px 6px; background: rgb(217 232 107 / .18); color: #5B6B10; font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; }
+/* Status in a row: a pill when it is the point of the row, a 6px dot when it is metadata. */
+.uv-status { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px 3px 8px; border-radius: 999px; font: 500 12px/16px var(--uv-font); }
+.uv-status::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+.uv-status--ok { background: #E9F0D4; color: var(--uv-good); }
+.uv-status--warn { background: var(--uv-warn-tint); color: var(--uv-warn); }
+.uv-dot { display: inline-flex; align-items: center; gap: 6px; font: 500 12.5px/18px var(--uv-font); white-space: nowrap; }
+.uv-dot::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+.uv-dot--ok { color: var(--uv-good); } .uv-dot--bad { color: var(--uv-danger); } .uv-dot--warn { color: #9A6B0C; } .uv-dot--idle { color: var(--uv-ink-3); }
+.uv-count { min-width: 20px; padding: 0 6px; border-radius: var(--uv-r-badge); background: var(--uv-chip); font: 600 11.5px/18px var(--uv-font); text-align: center; color: var(--uv-ink-3); }
+
+/* ── 12. KPI tiles ── filled, no border, icon chip, 24/34 value, a 6px-radius delta pill. ─────────── */
+.uv-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 0; }
+.uv-kpi { min-width: 0; margin: 0; padding: 16px 18px; border-radius: var(--uv-r-tile); background: var(--uv-sunken); }
+.uv-kpi__icon { display: grid; place-items: center; width: 30px; height: 30px; margin-bottom: 12px; border-radius: 9px; background: var(--uv-surface); color: var(--uv-ink-2); box-shadow: var(--uv-shadow-1); }
+.uv-kpi__label { margin: 0; font: 400 14px/20px var(--uv-font); color: var(--uv-ink-2); }
+.uv-kpi__value { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 0; font: 700 24px/34px var(--uv-font-display); letter-spacing: -.02em; color: var(--uv-sel); font-variant-numeric: tabular-nums; }
+.uv-kpi__value.is-text { font: 600 18px/34px var(--uv-font); color: var(--uv-ink); }
+.uv-kpi__empty { margin-top: 6px; font: 400 14px/20px var(--uv-font); color: var(--uv-ink-3); }
+.uv-kpi__sub { margin: 0; font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-delta { padding: 0 6px; border-radius: var(--uv-r-badge); font: 600 12px/20px var(--uv-font); letter-spacing: 0; }
+.uv-delta--good { background: var(--uv-sel-tint); color: var(--uv-good); }   /* green when it is good news… */
+.uv-delta--bad { background: var(--uv-danger-tint); color: var(--uv-danger); } /* …a cost going up is red */
+
+/* ── 13. Tables & grids ── one header band everywhere, lowercase, inside a 16px frame. ─────────── */
+.uv-frame { border: 1px solid var(--uv-rule); border-radius: var(--uv-r-tile); background: var(--uv-surface); overflow: clip; }
+.uv-table { width: 100%; border-collapse: collapse; font: 400 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-table thead th { padding: 10px 14px; border-bottom: 1px solid var(--uv-rule); background: var(--uv-sunken-soft); font: 500 12.5px/18px var(--uv-font); letter-spacing: 0; text-transform: none; text-align: left; color: var(--uv-ink-3); }
+.uv-table td { padding: 12px 14px; border-top: 1px solid var(--uv-rule); }
+.uv-table tbody tr:first-child td { border-top: 0; }
+.uv-table tbody tr { transition: background-color var(--uv-d-instant) var(--uv-ease); }
+.uv-table tbody tr:hover { background: var(--uv-row-hover); }
+.uv-table tbody tr.is-selected { background: var(--uv-sel-row); box-shadow: inset 3px 0 0 var(--uv-sel); }
+.uv-table tbody tr.is-selected:hover { background: var(--uv-sel-row-hover); }
+.uv-table .uv-num, .uv-table td.is-num { text-align: right; font-variant-numeric: tabular-nums; }
+/* Data grid: the header band stays while you scroll a thousand rows. */
+.uv-grid { border: 1px solid var(--uv-rule); border-radius: 14px; background: var(--uv-surface); overflow: clip; box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .04); }
+.uv-grid__head { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 0 14px; border-bottom: 1px solid var(--uv-rule); background: var(--uv-sunken-soft); font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-grid__count { padding: 2px 9px; border-radius: 999px; }
+.uv-grid__count.is-active { background: var(--uv-sel-tint); color: var(--uv-sel); font-weight: 600; }
+.uv-grid__group { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-top: 1px solid var(--uv-rule); background: #FCFBF8; font-weight: 500; }
+.uv-grid__group.is-level-2 { padding-left: 38px; background: var(--uv-surface); }
+.uv-grid__row { display: flex; width: 100%; align-items: flex-start; gap: 12px; padding: 10px 14px 10px 94px; border: 0; border-top: 1px solid var(--uv-rule); background: transparent; text-align: left; cursor: pointer; transition: background-color 120ms var(--uv-ease); }
+.uv-grid__row:hover { background: var(--uv-row-hover); }
+.uv-grid__row.is-selected { background: var(--uv-sel-row); box-shadow: inset 3px 0 0 var(--uv-sel); }
+.uv-grid__row.is-selected:hover { background: var(--uv-sel-row-hover); }
+.uv-grid__row.is-flat { padding-left: 14px; }
+.uv-grid__row img { border-radius: var(--uv-r-item); }
+.uv-grid__row:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: -2px; }
+
+/* ── 14. Trees ── campaign → set → item: framed, cream header, 16/40/64px indents. ──────────────── */
+.uv-tree { border: 1px solid var(--uv-rule); border-radius: 14px; background: var(--uv-surface); overflow: clip; }
+.uv-tree__head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--uv-rule); background: var(--uv-sunken-soft); }
+.uv-tree__head small { display: block; font: 400 12.5px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-tree__head strong { font: 600 15px/22px var(--uv-font); color: var(--uv-ink); }
+.uv-tree__row { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 10px 16px; border-top: 1px solid var(--uv-rule); transition: background-color 150ms; }
+.uv-tree__row:hover { background: #FAF9F6; }
+.uv-tree__row.is-l2 { padding-left: 40px; }
+.uv-tree__row.is-l3 { padding-left: 64px; }
+.uv-tree__head + .uv-tree__row { border-top: 0; }
+.uv-tree__chev { color: var(--uv-ink-3); transition: transform 150ms; }
+.uv-tree__row[aria-expanded="false"] .uv-tree__chev { transform: rotate(-90deg); }
+/* A leaf with a thumbnail: 30×38, 6px radius, hairline ring; its "View" turns into a white pill on hover. */
+.uv-leaf { display: flex; width: 100%; align-items: center; gap: 12px; min-height: 54px; padding: 8px 10px; border: 0; border-radius: var(--uv-r-control); background: transparent; text-align: left; cursor: pointer; transition: background-color 150ms; }
+.uv-leaf:hover { background: var(--uv-sunken-soft); }
+.uv-leaf img { width: 30px; height: 38px; object-fit: cover; border-radius: 6px; box-shadow: 0 0 0 1px var(--uv-rule); }
+.uv-leaf__view { margin-left: auto; padding: 4px 10px; border-radius: var(--uv-r-item); font: 400 12.5px/18px var(--uv-font); color: var(--uv-ink-2); transition: background-color 150ms; }
+.uv-leaf:hover .uv-leaf__view { background: #fff; color: var(--uv-ink); }
+
+/* ── 15. Callouts & lists ── filled zones, never a colored bar on the left. ─────────────────────── */
+.uv-callout { padding: 16px 18px; border: 0; border-radius: var(--uv-r-block); background: var(--uv-sunken); font: 400 14px/22px var(--uv-font); color: var(--uv-ink); }
+.uv-callout__sign { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font: 500 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-callout__sign svg { color: var(--uv-sel); }
+.uv-callout--soft { background: var(--uv-sunken-soft); border-radius: var(--uv-r-tile); }
+/* On the page a list is a white framed block; inside a white modal it becomes a filled block. */
+.uv-list { margin: 0; padding: 4px 0; list-style: none; border: 1px solid var(--uv-rule); border-radius: var(--uv-r-block); background: var(--uv-surface); }
+.uv-list > li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; font: 400 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-list > li + li { border-top: 1px solid var(--uv-rule); }
+.uv-on-surface .uv-list { border: 0; background: var(--uv-sunken-soft); }
+.uv-on-surface .uv-list > li + li { border-top-color: #ECE9E1; }
+
+/* ── 16. Accordion ── the chevron turns, the content pushes the rest down smoothly. ─────────────── */
+.uv-accordion__head { display: flex; align-items: center; gap: 8px; width: calc(100% + 16px); margin: 0 -8px; padding: 6px 8px; border: 0; border-radius: var(--uv-r-control); background: transparent; font: 500 14px/20px var(--uv-font); color: var(--uv-ink-2); text-align: left; cursor: pointer; transition: background-color 150ms var(--uv-ease), color 150ms var(--uv-ease); }
+.uv-accordion__head:hover { background: var(--uv-hover); color: var(--uv-ink); }
+.uv-accordion__head:focus-visible { outline: 2px solid var(--uv-sel); outline-offset: 2px; }
+.uv-accordion__head > svg:not(.uv-accordion__chev) { color: var(--uv-ink-3); }
+.uv-accordion__chev { margin-left: auto; color: var(--uv-ink-3); transition: rotate 260ms var(--uv-ease); }
+.uv-accordion.is-open .uv-accordion__chev { rotate: 180deg; }
+.uv-accordion__body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 280ms var(--uv-ease), opacity 200ms var(--uv-ease); }
+.uv-accordion.is-open .uv-accordion__body { grid-template-rows: 1fr; opacity: 1; }
+.uv-accordion__inner { min-height: 0; overflow: hidden; }
+.uv-accordion.is-open .uv-accordion__inner { overflow: visible; }
+
+/* ── 17. Toasts & tooltips ── cards with a colored disc per meaning; deep-colored bubbles. ─────── */
+.uv-toast { display: flex; gap: 12px; width: 356px; padding: 14px 16px; border: 1px solid var(--uv-rule); border-radius: var(--uv-r-card); background: var(--uv-surface); color: var(--uv-ink); box-shadow: var(--uv-shadow-popover); font-family: var(--uv-font); }
+.uv-toast__icon { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px; background: var(--uv-sel-tint); color: var(--uv-sel); }
+.uv-toast--error .uv-toast__icon { background: var(--uv-danger-tint); color: var(--uv-danger); }
+.uv-toast--warn .uv-toast__icon { background: var(--uv-warn-tint); color: var(--uv-warn); }
+.uv-toast--info .uv-toast__icon { background: var(--uv-info-tint); color: var(--uv-info); }
+.uv-toast__title { font: 600 14px/20px var(--uv-font); }
+.uv-toast__desc { font: 400 13px/18px var(--uv-font); color: var(--uv-ink-2); }
+.uv-toast__actions { display: flex; gap: 8px; margin-top: 8px; }
+.uv-toast__actions .uv-btn { min-height: 30px; padding: 0 12px; font-size: 13px; border-radius: var(--uv-r-item); }
+.uv-tooltip { padding: 6px 9px; border-radius: var(--uv-r-item); background: var(--uv-ink); color: #F1EEE6; font: 500 12.5px/16px var(--uv-font); box-shadow: 0 4px 14px rgb(var(--uv-shadow-rgb) / .25); }
+
+/* ── 18. Command palette & confirm dialog ── the only things that float get the only big shadow. ─ */
+.uv-overlay { position: fixed; inset: 0; background: rgb(var(--uv-shadow-rgb) / .28); backdrop-filter: blur(2px); animation: uv-fade-in var(--uv-d-standard) var(--uv-ease); }
+.uv-modal { border: 1px solid var(--uv-rule-2); border-radius: var(--uv-r-tile); background: var(--uv-surface); box-shadow: var(--uv-shadow-modal); animation: uv-modal-in 300ms var(--uv-ease-in); }
+.uv-palette { display: flex; flex-direction: column; width: min(640px, calc(100vw - 32px)); border: 1px solid var(--uv-rule-2); border-radius: 9px; background: #fff; box-shadow: var(--uv-shadow-modal); overflow: hidden; }
+.uv-palette__input { display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 16px; border-bottom: 1px solid var(--uv-rule); color: var(--uv-ink-3); }
+.uv-palette__input input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; font-size: 16px; color: var(--uv-ink); }
+.uv-palette__list { max-height: min(56vh, 460px); overflow: auto; padding: 6px; overscroll-behavior: contain; }
+.uv-palette__group { padding: 12px 10px 6px; font: 500 12.5px/1 var(--uv-font); color: var(--uv-ink-3); }
+.uv-palette__item { display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 10px; border-radius: var(--uv-r-item); font-size: 14px; color: var(--uv-ink); cursor: pointer; }
+.uv-palette__item[aria-selected="true"] { background: var(--uv-sel-tint); color: var(--uv-sel); }
+.uv-palette__hint { margin-left: auto; max-width: 42%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: var(--uv-ink-3); }
+.uv-palette__foot { display: flex; gap: 18px; padding: 10px 16px; border-top: 1px solid var(--uv-rule); background: var(--uv-canvas); font-size: 12px; color: var(--uv-ink-3); }
+.uv-kbd { padding: 3px 6px; border: 1px solid var(--uv-rule-2); border-radius: 5px; background: var(--uv-canvas); font: 500 11px/1 var(--uv-font); color: var(--uv-ink-3); }
+.uv-confirm { width: min(440px, calc(100vw - 32px)); padding: 22px 22px 18px; }
+.uv-confirm__question { margin: 0; font: 400 15px/1.5 var(--uv-font); color: var(--uv-ink); }
+.uv-confirm__actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+/* ── 19. Loading ── skeletons keep the place; a calm light runs through words; dots that wave. ──── */
+.uv-skeleton { display: block; border-radius: 5px; background: linear-gradient(90deg, var(--uv-chip) 0%, #F1EEE6 45%, var(--uv-chip) 90%); background-size: 250% 100%; animation: uv-sweep 1.5s var(--uv-ease) infinite; }
+.uv-shimmer { background: linear-gradient(90deg, var(--uv-ink-3) 0%, var(--uv-ink-3) 35%, var(--uv-ink) 50%, var(--uv-ink-3) 65%, var(--uv-ink-3) 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: uv-shimmer 2.2s linear infinite; }
+.uv-thinking { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/20px var(--uv-font); color: var(--uv-ink-3); }
+.uv-thinking__dots { display: inline-flex; gap: 3px; }
+.uv-thinking__dots i { width: 5px; height: 5px; border-radius: 999px; background: var(--uv-sel); animation: uv-wave 1.1s var(--uv-ease) infinite; }
+.uv-thinking__dots i:nth-child(2) { animation-delay: .12s; } .uv-thinking__dots i:nth-child(3) { animation-delay: .24s; }
+.uv-thinking__time { font-variant-numeric: tabular-nums; color: var(--uv-ink-3); }
+/* Rolling digits: each digit is a column that scrolls to its value (see RollingNumber.tsx). */
+.uv-roll { display: inline-flex; align-items: baseline; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.uv-roll__col { display: inline-block; position: relative; height: 1lh; overflow: hidden; vertical-align: bottom; }
+.uv-roll__strip { display: flex; flex-direction: column; transform: translateY(calc(var(--d) * -1lh)); transition: transform var(--uv-d-spring) var(--uv-spring); animation: uv-roll-in 680ms var(--uv-ease-in) backwards; animation-delay: calc(var(--i) * 32ms); }
+
+/* ── 20. Activity feed ── counted tabs, days in gray zones, one white tile per event. ─────────────── */
+.uv-tabs { display: inline-flex; gap: 2px; padding: 3px; border-radius: var(--uv-r-control); background: var(--uv-sunken); }
+.uv-tabs button { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 0; border-radius: var(--uv-r-item); background: transparent; font: 500 13.5px/20px var(--uv-font); color: var(--uv-ink-3); cursor: pointer; transition: background-color 150ms, color 150ms, box-shadow 150ms; }
+.uv-tabs button:hover { color: var(--uv-ink); }
+.uv-tabs button[aria-selected="true"] { background: #fff; color: var(--uv-ink); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .1); }
+.uv-tabs button[aria-selected="true"] .uv-count { background: var(--uv-sunken); color: var(--uv-ink-2); }
+.uv-feed-day h3 { margin: 18px 0 8px; font: 500 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-feed-day h3::first-letter { text-transform: uppercase; }
+.uv-feed-day ol { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 4px; border-radius: var(--uv-r-tile); background: var(--uv-sunken); list-style: none; }
+.uv-feed-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 12px; border-radius: var(--uv-r-card); background: #fff; animation: uv-rise 300ms var(--uv-ease) both; transition: box-shadow 150ms; }
+.uv-feed-item:hover { box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .08), 0 4px 12px rgb(var(--uv-shadow-rgb) / .05); }
+.uv-avatar { position: relative; flex: none; display: grid; place-items: center; width: 36px; height: 36px; padding: 0 4px 4px 0; border-radius: 999px; background: var(--uv-ink); color: var(--uv-accent); font: 700 12px/1 var(--uv-font-display); letter-spacing: .02em; }
+.uv-avatar.is-unknown { background: var(--uv-sunken); color: var(--uv-ink-3); }
+.uv-avatar__badge { position: absolute; right: -4px; bottom: -4px; display: grid; place-items: center; width: 17px; height: 17px; border-radius: 999px; background: #fff; box-shadow: 0 0 0 1.5px #fff, 0 1px 2px rgb(var(--uv-shadow-rgb) / .18); }
+.uv-feed-item__body { flex: 1; min-width: 0; }
+.uv-feed-item__title { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-feed-item__meta { display: flex; align-items: center; gap: 6px; margin: 2px 0 0; font: 400 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-feed-item__side { flex: none; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font: 400 13px/18px var(--uv-font); }
+.uv-feed-item__side time { color: var(--uv-ink-3); font-variant-numeric: tabular-nums; }
+
+/* ── 21. Agent thread ── an AI screen as a conversation, not a stack of cards. ──────────────────── */
+.uv-agent { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.uv-agent.has-panel { grid-template-columns: minmax(0, 1fr) 296px; }
+.uv-agent__thread { display: flex; flex-direction: column; min-width: 0; min-height: 0; border-radius: var(--uv-r-canvas); background: var(--uv-sunken); }
+.uv-agent__scroll { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; padding: 22px 24px 16px; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); }
+.uv-bubble { align-self: flex-end; max-width: min(520px, 72%); margin: 0; padding: 11px 12px; border-radius: var(--uv-r-tile); background: #fff; font: 400 14px/20px var(--uv-font); color: var(--uv-ink); white-space: pre-wrap; animation: uv-rise 260ms var(--uv-ease) both; }
+/* What the agent read: a search-trail tree with hooked connectors. */
+.uv-trace { font: 400 14px/20px var(--uv-font); color: var(--uv-ink-2); animation: uv-rise 300ms var(--uv-ease) both; }
+.uv-trace ul { position: relative; margin: 4px 0 0 7px; padding: 0 0 0 18px; list-style: none; border-left: 1px solid var(--uv-branch); }
+.uv-trace li { position: relative; display: flex; align-items: center; gap: 10px; min-height: 28px; }
+.uv-trace li::before { content: ""; position: absolute; left: -19px; top: -2px; width: 12px; height: 16px; border-bottom: 1px solid var(--uv-branch); border-left: 1px solid var(--uv-branch); border-bottom-left-radius: 7px; }
+.uv-trace li:last-child { margin-left: -19px; padding-left: 19px; background: var(--uv-sunken); }
+.uv-trace li:last-child::before { left: 0; }
+.uv-trace__thumbs { display: inline-flex; flex: none; }
+.uv-trace__thumbs img { width: 20px; height: 20px; border: 1.5px solid var(--uv-sunken); border-radius: 6px; object-fit: cover; background: var(--uv-chip); }
+.uv-trace__thumbs img + img { margin-left: -6px; }
+.uv-trace__meta { margin-left: auto; flex: none; padding-left: 16px; font-size: 13px; color: var(--uv-ink-3); font-variant-numeric: tabular-nums; }
+/* The answer is text: headings, simple lists, numbered items, quotes with a thin bar. */
+.uv-answer { max-width: 760px; font: 400 14px/22px var(--uv-font); color: var(--uv-ink-2); animation: uv-rise 340ms var(--uv-ease) both; }
+.uv-answer p { margin: 0; }
+.uv-answer .uv-answer__lead { font-size: 15px; line-height: 24px; color: var(--uv-ink); }
+.uv-answer h3 { margin: 22px 0 6px; font: 600 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-answer ul { margin: 0; padding-left: 18px; list-style: disc; }
+.uv-answer li::marker { color: var(--uv-ink-3); }
+.uv-answer li + li { margin-top: 6px; }
+.uv-answer ol { margin: 0; padding-left: 20px; }
+.uv-answer ol > li + li { margin-top: 14px; }
+.uv-answer blockquote { margin: 4px 0 0; padding-left: 10px; border-left: 2px solid var(--uv-branch); font-style: italic; color: var(--uv-ink-3); }
+.uv-answer__actions { display: flex; align-items: center; gap: 6px; }
+/* Empty state: a mark, one sentence, three suggestions that send on click. */
+.uv-starter { margin: auto; max-width: 480px; text-align: center; }
+.uv-starter__mark { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: var(--uv-r-card); background: #fff; color: var(--uv-sel); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .08); }
+.uv-starter h2 { margin: 14px 0 0; font: 600 20px/28px var(--uv-font); letter-spacing: -.01em; color: var(--uv-ink); }
+.uv-starter p { margin: 6px 0 0; font: 400 14px/20px var(--uv-font); color: var(--uv-ink-3); }
+.uv-suggestions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; }
+.uv-suggestions button { padding: 7px 12px; border: 0; border-radius: 999px; background: #fff; font: 500 13px/18px var(--uv-font); color: var(--uv-ink-2); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .06); cursor: pointer; transition: color 120ms, box-shadow 120ms; }
+.uv-suggestions button:hover { color: var(--uv-ink); box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .1), 0 0 0 1px var(--uv-branch); }
+/* Composer: two tiers, a status tab peeking above the white box, a round send button. */
+.uv-composer { padding: 0 12px 12px; }
+.uv-composer__status { display: flex; align-items: center; gap: 7px; margin: 0 16px -12px; padding: 6px 12px 18px; border-radius: 14px 14px 0 0; background: var(--uv-chip); font: 500 13px/18px var(--uv-font); color: var(--uv-ink-3); }
+.uv-composer__box { position: relative; padding: 12px 10px 10px 16px; border-radius: 20px; background: #fff; box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .06), 0 8px 24px rgb(var(--uv-shadow-rgb) / .06); }
+.uv-composer textarea { display: block; width: 100%; min-height: 40px; max-height: 120px; padding: 0 6px 0 0; resize: none; border: 0; outline: none; background: transparent; font: 400 14px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-composer__foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 6px 0 0 -8px; }
+.uv-send { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 999px; background: var(--uv-accent); color: var(--uv-on-accent); box-shadow: inset 0 1px 0 rgb(255 255 255 / .45), 0 1px 2px rgb(var(--uv-shadow-rgb) / .15); cursor: pointer; transition: filter 120ms, transform 120ms; }
+.uv-send:hover:not(:disabled) { filter: brightness(.97); }
+.uv-send:active:not(:disabled) { transform: scale(.95); }
+.uv-send:disabled { opacity: .45; cursor: not-allowed; }
+/* Side panel: what the agent looked at, as a two-column masonry. */
+.uv-gallery { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 8px; }
+.uv-gallery li { break-inside: avoid; margin-bottom: 10px; }
+.uv-gallery img { display: block; width: 100%; height: auto; min-height: 60px; border-radius: var(--uv-r-card); background: var(--uv-sunken); object-fit: cover; }
+.uv-gallery p { margin: 5px 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 12.5px/17px var(--uv-font); color: var(--uv-ink-2); }
+
+/* ── 22. Steps & journal ── progress as a list: done (gray check), current (raised), next (dashed). ─ */
+.uv-steps { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 6px; border-radius: var(--uv-r-tile); background: var(--uv-sunken); list-style: none; }
+.uv-step { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: var(--uv-r-control); font: 400 14px/20px var(--uv-font); color: var(--uv-ink-2); text-decoration: none; transition: background-color 150ms, color 150ms; }
+.uv-step:hover { background: #E8E5DD; color: var(--uv-ink); }
+.uv-step__mark { flex: none; display: grid; place-items: center; width: 18px; height: 18px; border: 1.5px dashed #BDB8AC; border-radius: 999px; color: #fff; }
+.uv-step.is-done { color: var(--uv-ink-3); }
+.uv-step.is-done .uv-step__mark { border: 0; background: #A9A497; }
+.uv-step.is-current { background: #fff; color: var(--uv-ink); font-weight: 500; box-shadow: 0 1px 2px rgb(var(--uv-shadow-rgb) / .08); }
+.uv-step.is-current .uv-step__mark { border: 2px solid var(--uv-sel); background: #fff; }
+.uv-ring-track { stroke: var(--uv-chip); }
+.uv-ring { stroke: var(--uv-sel); transition: stroke-dasharray 400ms var(--uv-ease); }
+/* A long job on a dark stage: lines appear as real work happens; the current one spins and shimmers. */
+.uv-journal { width: min(400px, 80vw); margin: 26px auto 0; padding: 6px; list-style: none; border: 1px solid rgb(246 244 238 / .08); border-radius: var(--uv-r-tile); background: rgb(246 244 238 / .04); }
+.uv-journal__line { display: flex; align-items: center; gap: 12px; padding: 7px 10px; border-radius: var(--uv-r-control); font: 400 15px/22px var(--uv-font); color: #A3CDBC; animation: uv-rise 260ms ease-out; }
+.uv-journal__line.is-current { background: rgb(246 244 238 / .07); }
+.uv-journal__mark { flex: none; display: grid; place-items: center; width: 18px; height: 18px; border: 1.5px dashed rgb(163 205 188 / .45); border-radius: 999px; }
+.uv-journal__line.is-done .uv-journal__mark { border: 0; background: rgb(163 205 188 / .16); }
+.uv-journal__line.is-done { color: rgb(163 205 188 / .75); }
+.uv-journal__line.is-current .uv-journal__mark { border: 2px solid rgb(163 205 188 / .25); border-top-color: var(--uv-accent); animation: uv-spin 900ms linear infinite; }
+.uv-journal__line.is-current .uv-journal__text { color: transparent; background: linear-gradient(100deg, #A3CDBC 30%, #F6F4EE 50%, #A3CDBC 70%) 200% center / 300% 100%; -webkit-background-clip: text; background-clip: text; animation: uv-shimmer 1.8s linear infinite; }
+.uv-journal__line.is-final .uv-journal__mark { border: 0; background: var(--uv-accent); }
+.uv-journal__line.is-final { color: #F6F4EE; font-weight: 600; }
+.uv-journal__wait { display: block; font-size: 13px; line-height: 18px; color: #E9DCA2; }
+
+/* ── 23. Date range ── presets on the left, two months on the right, the range as a pale band. ─── */
+.uv-range { display: grid; grid-template-columns: 190px minmax(0, 1fr); width: min(760px, calc(100vw - 48px)); overflow: hidden; border: 1px solid var(--uv-rule); border-radius: var(--uv-r-block); background: #fff; box-shadow: var(--uv-shadow-popover); }
+.uv-range__presets { margin: 0; padding: 8px; list-style: none; border-right: 1px solid var(--uv-rule); background: #FAF8F3; }
+.uv-range__presets button { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 8px 10px; border: 0; border-radius: 9px; background: transparent; font: 400 13.5px/20px var(--uv-font); color: var(--uv-ink-2); text-align: left; cursor: pointer; transition: background-color 120ms, color 120ms; }
+.uv-range__presets button small { font-size: 11px; color: var(--uv-ink-3); }
+.uv-range__presets button:hover { background: var(--uv-hover); color: var(--uv-ink); }
+.uv-range__presets button[aria-checked="true"] { background: #fff; color: var(--uv-ink); font-weight: 600; box-shadow: var(--uv-shadow-raised); }
+.uv-range__months { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 14px 16px 6px; }
+.uv-range__month h4 { margin: 0 0 8px; text-align: center; font: 600 13.5px/20px var(--uv-font); color: var(--uv-ink); text-transform: capitalize; }
+.uv-range table { width: 100%; border-collapse: collapse; }
+.uv-range td { padding: 1px 0; }   /* no gap between days: the range reads as one band */
+.uv-range th { padding: 0 0 6px; font: 500 11.5px/16px var(--uv-font); color: var(--uv-ink-3); text-transform: capitalize; }
+.uv-day { display: grid; place-items: center; height: 32px; font: 400 13px/1 var(--uv-font); color: var(--uv-ink); font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color 100ms; }
+.uv-day:hover:not(.is-disabled):not(.is-in-range) { background: var(--uv-hover); border-radius: var(--uv-r-item); }
+.uv-day.is-disabled { color: var(--uv-rule-3); cursor: default; }
+.uv-day.is-in-range { background: var(--uv-sel-tint); }
+.uv-day.is-start, .uv-day.is-end { background: var(--uv-sel); color: #fff; font-weight: 600; }
+.uv-day.is-start { border-radius: 9px 0 0 9px; }
+.uv-day.is-end { border-radius: 0 9px 9px 0; }
+.uv-day.is-start.is-end { border-radius: 9px; }
+/* React Aria RangeCalendar: the same looks, driven by its data attributes. */
+.uv-range__nav { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 10px; padding: 14px 16px 0; }
+.uv-range__nav h2 { margin: 0; text-align: center; font: 600 13.5px/20px var(--uv-font); color: var(--uv-ink); }
+.uv-range__nav button { display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: var(--uv-r-item); background: transparent; color: var(--uv-ink-2); cursor: pointer; }
+.uv-range__nav button:hover { background: var(--uv-hover); color: var(--uv-ink); }
+.uv-range__nav button[data-disabled] { opacity: .3; }
+.uv-day[data-outside-month] { visibility: hidden; }
+.uv-day[data-disabled], .uv-day[data-unavailable] { color: var(--uv-rule-3); cursor: default; }
+.uv-day[data-selected] { background: var(--uv-sel-tint); }
+.uv-day[data-selection-start], .uv-day[data-selection-end] { background: var(--uv-sel); color: #fff; font-weight: 600; }
+.uv-day[data-selection-start] { border-radius: 9px 0 0 9px; }
+.uv-day[data-selection-end] { border-radius: 0 9px 9px 0; }
+.uv-day[data-selection-start][data-selection-end] { border-radius: 9px; }
+.uv-day[data-focus-visible] { box-shadow: inset 0 0 0 2px var(--uv-sel); border-radius: var(--uv-r-item); }
+.uv-range__foot { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--uv-rule); font-size: 12.5px; color: var(--uv-ink-3); }
+.uv-range__foot input { height: 34px; padding: 0 8px; border: 1px solid transparent; border-radius: 9px; background: var(--uv-sunken); font: 400 13px/1 var(--uv-font); color: var(--uv-ink); font-variant-numeric: tabular-nums; outline: 0; }
+.uv-range__foot input:focus { background: #fff; border-color: var(--uv-sel); box-shadow: 0 0 0 3px var(--uv-sel-tint); }
+
+/* ── Keyframes ── */
+@keyframes uv-menu-in { from { opacity: 0; scale: .97; translate: 0 -4px; } }
+@keyframes uv-modal-in { from { opacity: 0; scale: .975; translate: 0 8px; } }
+@keyframes uv-fade-in { from { opacity: 0; } }
+@keyframes uv-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes uv-sweep { from { background-position: 100% 0; } to { background-position: -150% 0; } }
+@keyframes uv-shimmer { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+@keyframes uv-wave { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes uv-spin { to { transform: rotate(360deg); } }
+@keyframes uv-roll-in { from { transform: translateY(1lh); opacity: 0; } }
+
+/* ── 24. Reduced motion ── one switch turns every animation off. ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .uv-seg[data-settled] .uv-seg__glide, .uv-roll__strip, .uv-accordion__body, .uv-accordion__chev, .uv-switch__thumb { transition: none !important; }
+  .uv-popover, .uv-modal, .uv-overlay, .uv-skeleton, .uv-shimmer, .uv-thinking__dots i, .uv-feed-item, .uv-bubble, .uv-trace, .uv-answer, .uv-journal__line, .uv-journal__mark, .uv-roll__strip { animation: none !important; }
+  .uv-shimmer { color: var(--uv-ink-3); background: none; }
+}
